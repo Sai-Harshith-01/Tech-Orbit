@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .space-theme {
+    @apply bg-[#030612] text-white;
+    background-image:
+      radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.4), transparent),
+      radial-gradient(1.5px 1.5px at 40px 70px, rgba(255, 255, 255, 0.3), transparent),
+      radial-gradient(1px 1px at 50px 160px, rgba(255, 255, 255, 0.2), transparent),
+      radial-gradient(1.5px 1.5px at 80px 120px, rgba(255, 255, 255, 0.3), transparent),
+      radial-gradient(1px 1px at 110px 210px, rgba(255, 255, 255, 0.4), transparent),
+      radial-gradient(2px 2px at 150px 140px, rgba(255, 255, 255, 0.2), transparent);
+    background-size: 300px 300px;
+    background-repeat: repeat;
+    animation: stars-slow-move 120s linear infinite;
+  }
+
+  @keyframes stars-slow-move {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: 0 300px;
+    }
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-glass hover:border-white/20 transition-all duration-500;
+  }
+
+  .neon-text-blue {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+
+  .neon-text-purple {
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+
+  .neon-border-blue {
+    @apply border border-orbit-accent/30 shadow-neon-blue;
+  }
+
+  .orbit-glow {
+    @apply absolute rounded-full blur-[100px] opacity-20 pointer-events-none;
+  }
+
+  .btn-orbit {
+    @apply relative overflow-hidden px-8 py-3 rounded-full font-bold transition-all duration-300 active:scale-95;
+  }
+
+  .btn-orbit-primary {
+    @apply btn-orbit bg-orbit-accent text-white shadow-neon-blue hover:shadow-neon-blue-hover;
+  }
+
+  .btn-orbit-secondary {
+    @apply btn-orbit border border-white/20 text-white hover:bg-white/10;
+  }
+
+  .glass-panel {
+    @apply bg-white border border-slate-100 rounded-[32px] shadow-glass relative;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.95) 100%);
+  }
+
+  .input-premium {
+    @apply w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-premium text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all duration-300;
+  }
+
+  .btn-premium {
+    @apply px-8 py-3 bg-brand-600 text-white font-bold rounded-premium shadow-lg shadow-brand-500/30 hover:bg-brand-700 hover:shadow-brand-500/40 hover:-translate-y-0.5 active:scale-95 transition-all duration-300;
+  }
+
+  .premium-card {
+    @apply bg-white border border-slate-100 rounded-card shadow-sm hover:shadow-xl hover:border-brand-100 transition-all duration-500;
+  }
+}
+
+@layer utilities {
+  .text-gradient-space {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-orbit-accent via-orbit-glow to-orbit-purple;
+  }
+
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .delay-500 {
+    animation-delay: 500ms;
+  }
+}
