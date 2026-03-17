@@ -133,7 +133,7 @@ TechOrbit introduces a **manual payment verification workflow** to ensure secure
 
 # 🌐 Tech Stack
 
-## Frontend
+## 🎨 Frontend
 
 * React 18
 * Vite
@@ -142,29 +142,31 @@ TechOrbit introduces a **manual payment verification workflow** to ensure secure
 * React Router DOM
 * JWT Authentication
 
-## Backend
+## ⚙️ Backend
 
-* Flask (REST API)
-* Flask-SQLAlchemy
+* FastAPI (High-performance async API framework)
+* MongoDB (NoSQL database)
+* Motor / PyMongo (MongoDB drivers)
 * JWT Authentication
 * Feedparser (RSS engine)
-* Werkzeug Security
-* CORS
+* Passlib / Bcrypt (Password hashing)
+* Python-Multipart (File uploads)
+* CORS Middleware
 
 ---
 
 # 🏗️ Architecture
 
-TechOrbit follows a **modular monorepo architecture**:
+TechOrbit follows a **modern asynchronous architecture**:
 
 ```
 Frontend (React)
         ↓
-REST API (Flask)
+FastAPI Backend (Async APIs)
         ↓
-Database (SQLAlchemy ORM)
+MongoDB (NoSQL Database)
         ↓
-Workers (RSS Feed Engine)
+Background Workers (RSS Feed Engine)
 ```
 
 ---
@@ -213,7 +215,7 @@ backend/
 │   ├── workers/
 │   │   └── rss_worker.py
 │   │
-│   ├── database.py
+│   ├── database.py   # MongoDB connection setup
 │   └── main.py
 │
 ├── uploads/
@@ -313,17 +315,25 @@ POST /api/admin/articles
 
 # ⚙️ Installation & Setup
 
-## Backend
+## Backend (FastAPI)
 
 ```bash
 cd backend
 python -m venv venv
 venv\Scripts\activate   # Windows
+
 pip install -r requirements.txt
+
 cp .env.example .env
-python create_admin.py
-flask run
 ```
+
+Run server:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+👉 Backend: [http://localhost:8000](http://localhost:8000)
 
 ---
 
@@ -334,6 +344,8 @@ cd frontend
 npm install
 npm run dev
 ```
+
+👉 Frontend: [http://localhost:5173](http://localhost:5173)
 
 ---
 
@@ -356,14 +368,14 @@ VITE_API_URL=https://your-backend-url/api
 ## Backend (Render / Railway / VPS)
 
 ```
-FLASK_ENV=production
-DATABASE_URL=postgresql://...
+MONGO_URI=mongodb://...
+JWT_SECRET=your_secret_key
 ```
 
 Run:
 
-```
-gunicorn app.main:app
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
 ---
@@ -371,7 +383,7 @@ gunicorn app.main:app
 # 🔒 Security
 
 * JWT-based authentication
-* Password hashing (Werkzeug)
+* Password hashing (Bcrypt)
 * Role-based access control
 * Secure file upload handling
 * CORS protection
@@ -382,10 +394,10 @@ gunicorn app.main:app
 
 ## Backend
 
-| Issue      | Solution              |
-| ---------- | --------------------- |
-| DB errors  | Reinitialize database |
-| CORS issue | Check `.env` config   |
+| Issue               | Solution               |
+| ------------------- | ---------------------- |
+| DB connection error | Check MongoDB URI      |
+| CORS issue          | Verify allowed origins |
 
 ## Frontend
 
@@ -420,3 +432,7 @@ MIT License © 2026 TechOrbit
 **Lahari**
 **Shiva**
 **Sree Vyshnavi**
+
+
+
+Just tell 👍
